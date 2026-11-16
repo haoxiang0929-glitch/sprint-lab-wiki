@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPRINT LAB // 短跑與運動科學筆記庫</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-50 min-h-screen flex flex-col font-sans antialiased">
+
+  <!-- Header -->
+  <header class="border-b border-slate-800 bg-slate-900/90 sticky top-0 z-10 backdrop-blur">
+    <div class="max-w-4xl mx-auto px-6 py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="inline-block w-3 h-3 rounded-full bg-orange-500"></span>
+          <h1 class="text-2xl font-extrabold tracking-tight text-white">SPRINT LAB</h1>
+        </div>
+        <p class="text-slate-400 text-sm mt-1">100m / 200m 短跑生物力學、專項肌力與訓練筆記庫</p>
+      </div>
+      <div class="text-xs font-mono text-slate-400 bg-slate-800 px-3 py-1.5 rounded border border-slate-700">
+        STATUS: ACTIVE // 2026 SEASON
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-6 py-10 flex-grow w-full">
+    
+    <!-- Filter Bar -->
+    <div class="flex flex-wrap gap-2 mb-8" id="filter-buttons">
+      <button onclick="filterPosts('all')" class="filter-btn active px-4 py-1.5 rounded-full text-sm font-medium bg-orange-500 text-white transition">
+        全部筆記
+      </button>
+      <button onclick="filterPosts('技術力學')" class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+        技術力學
+      </button>
+      <button onclick="filterPosts('肌力體能')" class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+        肌力體能
+      </button>
+      <button onclick="filterPosts('訓練復盤')" class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+        訓練復盤
+      </button>
+    </div>
+
+    <!-- Article Grid -->
+    <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <!-- Card 1 -->
+      <a href="post-start.html" data-category="技術力學" class="post-card group block bg-slate-800 border border-slate-700 rounded-xl p-6 hover:border-orange-500 transition duration-200">
+        <div class="flex items-center justify-between text-xs mb-3">
+          <span class="px-2.5 py-0.5 rounded bg-orange-500/20 text-orange-400 font-medium">技術力學</span>
+          <span class="font-mono text-slate-400">2026-11-16</span>
+        </div>
+        <h2 class="text-xl font-bold text-white group-hover:text-orange-400 transition mb-2">
+          蹲踞式起跑與前 30 公尺加速力學拆解
+        </h2>
+        <p class="text-slate-400 text-sm line-clamp-2 mb-4">
+          解析出槍瞬間的水平推蹬向量、小腿脛骨角度（Shin Angle）控制，以及如何避免過早抬頭導致的減速。
+        </p>
+        <div class="flex items-center justify-between pt-4 border-t border-slate-700/70 text-xs font-mono text-sky-400">
+          <span>關鍵指標：45° 推蹬角 / 0-30m</span>
+          <span class="group-hover:translate-x-1 transition">閱讀筆記 →</span>
+        </div>
+      </a>
+
+      <!-- Card 2 (Placeholder for demonstration of extensibility) -->
+      <div data-category="肌力體能" class="post-card block bg-slate-800/50 border border-dashed border-slate-700 rounded-xl p-6">
+        <div class="flex items-center justify-between text-xs mb-3">
+          <span class="px-2.5 py-0.5 rounded bg-sky-500/20 text-sky-400 font-medium">肌力體能</span>
+          <span class="font-mono text-slate-500">COMING SOON</span>
+        </div>
+        <h2 class="text-xl font-bold text-slate-300 mb-2">
+          髖屈肌群與後側鏈爆發力專項訓練
+        </h2>
+        <p class="text-slate-500 text-sm mb-4">
+          透過 AGENTS.md 規範，只需提供草稿即可讓 AI 自動生成此頁面並掛載至此卡片。
+        </p>
+        <div class="pt-4 border-t border-slate-800 text-xs font-mono text-slate-500">
+          <span>模板就緒 // 待機擴充中</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500 font-mono">
+    SPRINT LAB WIKI // POWERED BY AGENTS.MD ARCHITECTURE
+  </footer>
+
+  <script>
+    function filterPosts(category) {
+      const cards = document.querySelectorAll('.post-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-orange-500', 'text-white');
+        btn.classList.add('bg-slate-800', 'text-slate-300');
+      });
+      event.target.classList.remove('bg-slate-800', 'text-slate-300');
+      event.target.classList.add('bg-orange-500', 'text-white');
+
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
